@@ -25,18 +25,18 @@ class Livre
     private $titre;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Autheur::class, inversedBy="livres")
+     * @ORM\ManyToMany(targetEntity=Auteur::class, inversedBy="livres")
      */
-    private $autheur;
+    private $auteur;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $date_publication;
+    private $datePublication;
 
     public function __construct()
     {
-        $this->autheur = new ArrayCollection();
+        $this->auteur = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -57,37 +57,37 @@ class Livre
     }
 
     /**
-     * @return Collection<int, Autheur>
+     * @return Collection<int, Auteur>
      */
-    public function getAutheur(): Collection
+    public function getAuteur(): Collection
     {
-        return $this->autheur;
+        return $this->auteur;
     }
 
-    public function addAutheur(Autheur $autheur): self
+    public function addAuteur(Auteur $auteur): self
     {
-        if (!$this->autheur->contains($autheur)) {
-            $this->autheur[] = $autheur;
+        if (!$this->auteur->contains($auteur)) {
+            $this->auteur[] = $auteur;
         }
 
         return $this;
     }
 
-    public function removeAutheur(Autheur $autheur): self
+    public function removeAuteur(Auteur $auteur): self
     {
-        $this->autheur->removeElement($autheur);
+        $this->auteur->removeElement($auteur);
 
         return $this;
     }
 
-    public function getDatePublication(): ?\DateTimeInterface
+    public function getdatePublication(): ?\DateTimeInterface
     {
-        return $this->date_publication;
+        return $this->datePublication;
     }
 
-    public function setDatePublication(?\DateTimeInterface $date_publication): self
+    public function setDatePublication(?\DateTimeInterface $datePublication): self
     {
-        $this->date_publication = $date_publication;
+        $this->datePublication = $datePublication;
 
         return $this;
     }

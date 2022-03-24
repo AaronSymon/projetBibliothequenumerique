@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AutheurRepository;
+use App\Repository\AuteurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AutheurRepository::class)
+ * @ORM\Entity(repositoryClass=AuteurRepository::class)
  */
-class Autheur
+class Auteur
 {
     /**
      * @ORM\Id
@@ -35,7 +35,7 @@ class Autheur
     private $dateDeNaissance;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Livre::class, mappedBy="autheur")
+     * @ORM\ManyToMany(targetEntity=Livre::class, mappedBy="auteur")
      */
     private $livres;
 
@@ -97,7 +97,7 @@ class Autheur
     {
         if (!$this->livres->contains($livre)) {
             $this->livres[] = $livre;
-            $livre->addAutheur($this);
+            $livre->addAuteur($this);
         }
 
         return $this;
@@ -106,7 +106,7 @@ class Autheur
     public function removeLivre(Livre $livre): self
     {
         if ($this->livres->removeElement($livre)) {
-            $livre->removeAutheur($this);
+            $livre->removeAuteur($this);
         }
 
         return $this;
